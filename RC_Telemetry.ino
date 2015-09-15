@@ -11,8 +11,8 @@
 #include <SPI.h>				// SPI library
 #include <Adafruit_BME280.h>	// Altimeter library
 #include <Adafruit_Sensor.h>	// Adafruit sensor
-#include <Adafruit_BNO055.h>	//9DOF Sensor library
-#include <utility/imumaths.h>	// 
+#include <Adafruit_BNO055.h>	// 9DOF Sensor library
+#include <utility/imumaths.h>	// Library needed for 9DOF sensor (I think)
 #include <TinyGPS++.h>			// GPS library
 
 // Constants for the BNO055 9DOF Sensor
