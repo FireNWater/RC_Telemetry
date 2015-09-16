@@ -1,0 +1,345 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pr",
+				"print_arg"
+			],
+			[
+				"def",
+				"defs	Method"
+			],
+			[
+				"T",
+				"True"
+			],
+			[
+				"g",
+				"GPS_altitude"
+			],
+			[
+				"pre",
+				"HPA_pressure"
+			],
+			[
+				"ma",
+				"magnetic_heading"
+			],
+			[
+				"c",
+				"calibration_system"
+			],
+			[
+				"de",
+				"defs	Method"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "\n\n\n \nimport sys, os\nimport xbeedata\nimport TFT_Display\n\ntelemetry = xbeedata.XbeeData()\ndisplay = TFT_Display.TFT_Display()\n\nwhile True: # main game loop\n\n	if (display.check_for_quit()):\n		sys.exit()\n	\n	# data = dataPackage.readline()     Replace this with telemetry object feeding info to display\n	\n	if (len(data) > 0):\n		dataText = fontObj.render(data, True, text_color, GREEN)\n		DISPLAYSURF.blit(dataText, (20, 50))\n	\n	telemetry.update_data()		#Get fresh set of data from aircraft\n\n	pass						# <--Feed new data to the display object\n\n	display.update_screen()		#update the screen\n\n",
+			"file": "GroundStation/GroundStation.py",
+			"file_size": 1277,
+			"file_write_time": 130867681149089686,
+			"settings":
+			{
+				"buffer_size": 584,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\n\nclass TFT_Display(object):\n 	\"\"\"This class will handle the graphics display\"\"\"\n 	def __init__(self):\n 		import pygame, sys, os\n 		from pygame.locals import *\n		pygame.init()\n 		self.os.environ[\"SDL_FBDEV\"] = \"/dev/fb1\"	#direct output to TFT screen\n		self.TFT_Display_Width  = 320 \n		self.TFT_Display_Height = 240\n		self.DISPLAYSURF = pygame.display.set_mode((TFT_Display_Width, TFT_Display_Height))\n		self.pygame.display.set_caption('Ground Station')\n\n		self.text_color = pygame.Color(0, 0, 0)\n		self.bg_color = pygame.Color(0, 255, 255)\n		self.GREEN = pygame.Color(0, 255, 0)\n\n		self.wingsLevel = pygame.image.load('WingsLevelSymbol.png')\n		self.airplaneSymbol = pygame.image.load('AirplaneSymbol.png')\n\n		self.fontObj = pygame.font.Font('freesansbold.ttf', 16)\n\n	def update_screen(self):\n\n		self.calibrationText = fontObj.render('Calibration Status', True, text_color, GREEN)\n		self.DISPLAYSURF.fill(bg_color)\n		self.DISPLAYSURF.blit(wingsLevel, (10,110))											#Placeholder for testing\n		self.DISPLAYSURF.blit(calibrationText, (20, 20))\n\n		self.pygame.display.update()\n\n	def check_for_quit(self):\n		for event in self.pygame.event.get():\n		if event.type == QUIT:\n			self.pygame.quit()\n			return True\n		else return False\n\n	def display_wings_level_symbol(self, degrees):\n		pass\n\n	def display mag_heading(self):\n		pass\n\n	def display_lat_long(self):\n		pass\n\n",
+			"file": "GroundStation/TFT_Display.py",
+			"file_size": 1268,
+			"file_write_time": 130868505980645404,
+			"settings":
+			{
+				"buffer_size": 1362,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\n\nclass XbeeData(object):\n	\"\"\"  Class to collect and parse data from Xbee Pro module\"\"\"\n	def __init__(self):\n		import serial\n		self.USB_data_Package = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)\n\n		self.calibration_system = \"\"\n		self.calibration_gyro = \"\"\n		self.calibration_accel = \"\"\n		self.calibration_mag = \"\"\n		self.magnetic_heading = \"\"\n		self.roll = \"\"\n		self.pitch = \"\"\n		self.HPA_pressure = \"\"\n		self.humidity = \"\"\n		self.temperature = \"\"\n		self.latitude = \"\"\n		self.longtitude = \"\"\n		self.GPS_altitude = \"\"\n	\n\n	def update_data(self):\n\n		self.complete_data_package = False\n\n		while (not self.complete_data_package):\n\n			data = self.USB_data_Package.readline()\n			#print data\n\n			if data[0:4] == \"Done\":\n				self.complete_data_package = True\n			elif data[0:4] == \"CalS\":\n				self.calibration_system = data[4:]\n			elif data[0:4] == \"CalG\":\n				self.calibration_gyro = data[4:]\n			elif data[0:4] == \"CalA\":\n				self.calibration_accel = data[4:]\n			elif data[0:4] == \"CalM\":\n				self.calibration_mag = data[4:]\n			elif data[0:4] == \"Mag_\":\n				self.magnetic_heading = data[4:]\n			elif data[0:4] == \"Roll\":\n				self.roll = data[4:]\n			elif data[0:4] == \"Pit_\":\n				self.pitch = data[4:]\n			elif data[0:4] == \"Pres\":\n				self.HPA_pressure = data[4:]\n			elif data[0:4] == \"Hum_\":\n				self.humidity = data[4:]\n			elif data[0:4] == \"Temp\":\n				self.temperature = data[4:]\n			elif data[0:4] == \"Lat:\":\n				self.latitude = data[4:]\n			elif data[0:4] == \"Long\":\n				self.longtitude = data[4:]\n			elif data[0:4] == \"GPSA\":\n				self.GPS_altitude = data[4:]\n			\n\n\n		",
+			"file": "GroundStation/xbeedata.py",
+			"file_size": 1656,
+			"file_write_time": 130867681149424779,
+			"settings":
+			{
+				"buffer_size": 1563,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 239.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/GroundStation"
+	],
+	"file_history":
+	[
+		"/C/Users/klhoa_000/Desktop/ClassTest.py",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/PygameTest.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/RC_Telemetry.ino",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/xbeedata.py",
+		"/C/Users/klhoa_000/AppData/Roaming/Sublime Text 3/Packages/User/C++.sublime-settings",
+		"/C/Users/klhoa_000/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Readme.md",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Arduino Data Payload Example.md",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStation.py",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStation 2.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Arduino Data Payload Example",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/RC-Telemetry.ino",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Telemetry.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/Xbee-Test/.gitignore",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/Xbee-Test/Readme.txt",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/sketch_jul26a/sketch_jul26a.ino",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/Xbee-Test/xbeedata.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/libraries/Adafruit_BME280_Library/examples/bme280test/bme280test.ino",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/libraries/Adafruit_BME280_Library/Adafruit_BME280.h",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/libraries/Adafruit_BME280_Library/Adafruit_BME280.cpp",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/libraries/Adafruit_BME280_Library/README.md",
+		"/C/Users/klhoa_000/Desktop/PygameTest.py",
+		"/C/Users/klhoa_000/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "GroundStation/GroundStation.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								501,
+								501
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "GroundStation/TFT_Display.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1362,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								640,
+								640
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 558.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "GroundStation/xbeedata.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 49.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/C++/C++ Single File.sublime-build",
+	"project": "RC_Telemetry.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 295.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
