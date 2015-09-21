@@ -1,0 +1,46 @@
+
+
+class TFT_Display(object):
+ 	"""This class will handle the graphics display"""
+ 	def __init__(self):
+
+		import pygame, sys, os
+		# from pygame.locals import *
+		self.pygame.init()
+		self.os.environ["SDL_FBDEV"] = "/dev/fb1"	#direct output to TFT screen
+		self.TFT_Display_Width  = 320 
+		self.TFT_Display_Height = 240
+		self.DISPLAYSURF = pygame.display.set_mode((self.TFT_Display_Width, self.TFT_Display_Height))
+		self.pygame.display.set_caption('Ground Station')
+
+		self.text_color = pygame.Color(0, 0, 0)
+		self.bg_color = pygame.Color(0, 255, 255)
+		self.GREEN = pygame.Color(0, 255, 0)
+
+		self.wingsLevel = pygame.image.load('WingsLevelSymbol.png')
+		self.airplaneSymbol = pygame.image.load('AirplaneSymbol.png')
+
+		self.fontObj = pygame.font.Font('freesansbold.ttf', 16)
+
+		self.calibrationText = self.fontObj.render('Calibration Status', True, self.text_color, self.GREEN)
+		self.DISPLAYSURF.fill(self.bg_color)
+		self.DISPLAYSURF.blit(self.wingsLevel, (10,110))			#Placeholder for testing
+		self.DISPLAYSURF.blit(self.calibrationText, (20, 20))
+
+		pygame.display.update()
+
+	def update_screen(self):
+		import pygame
+
+		self.calibrationText = self.fontObj.render('Calibration Status', True, self.text_color, self.GREEN)
+		self.DISPLAYSURF.fill(self.bg_color)
+		self.DISPLAYSURF.blit(self.wingsLevel, (10,110))			#Placeholder for testing
+		self.DISPLAYSURF.blit(self.calibrationText, (20, 20))
+
+		pygame.display.update()
+
+	def check_for_quit(self):
+		for event in pygame.event.get():
+			if (event.type == QUIT):
+				pygame.quit()
+				sys.exit()

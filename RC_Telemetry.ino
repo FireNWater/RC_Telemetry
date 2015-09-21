@@ -66,10 +66,10 @@ void loop()                     // run over and over again
 	//Send the Gyro Calibration payload
 	uint8_t system, gyro, accel, mag = 0;
 	bno.getCalibration(&system, &gyro, &accel, &mag);
-	XBeeSerial.println("CalS" + String(system, DEC));
-	XBeeSerial.println("CalG" + String(gyro, DEC));
-	XBeeSerial.println("CalA" + String(accel, DEC));
-	XBeeSerial.println("CalM" + String(mag, DEC));
+	XBeeSerial.println("Cal S:"	+ String(system, DEC) 
+								+ " G:" + String(gyro, DEC) 
+								+ " A:" + String(accel, DEC) 
+								+ " M:" + String(mag, DEC));
 
 	//// Send Gyro Orientation payload
 
@@ -92,7 +92,7 @@ void loop()                     // run over and over again
 
 	XBeeSerial.println("Done");
 
-	smartDelay(100);		// Keeps GPS updating during delay
+	smartDelay(50);		// Keeps GPS updating during delay
 
 }	// End loop()
 
