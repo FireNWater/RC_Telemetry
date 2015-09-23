@@ -4,16 +4,24 @@
 		"selected_items":
 		[
 			[
+				"T",
+				"TFT_Display_Width"
+			],
+			[
+				"win",
+				"wingRectObject"
+			],
+			[
+				"wi",
+				"wingRectObject"
+			],
+			[
 				"com",
 				"compassCenter"
 			],
 			[
 				"sc",
 				"screenCenter"
-			],
-			[
-				"T",
-				"TFT_Display_Height"
 			],
 			[
 				"ro",
@@ -96,6 +104,12 @@
 	],
 	"file_history":
 	[
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStation.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Arduino Data Payload Example.md",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/xbeedata.py",
+		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStationTest.py",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Readme.md",
+		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Xbee%20series%201%20DS.pdf",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStation 3.py",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStationTest 3.py",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/xbeedata 3.py",
@@ -104,9 +118,6 @@
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/xbeedata 2.py",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStationTest 2.py",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/TFT_Display.this.didnt 2.work",
-		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStation.py",
-		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/xbeedata.py",
-		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/GroundStationTest.py",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/TFT_Display.this.didnt.work",
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/TFT_Display.py",
 		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/GroundStation/TFT_Display.this.didnt.work",
@@ -120,8 +131,6 @@
 		"/C/Users/klhoa_000/AppData/Local/Temp/fz3temp-1/PygameTest.py",
 		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/RC_Telemetry.ino",
 		"/C/Users/klhoa_000/AppData/Roaming/Sublime Text 3/Packages/User/C++.sublime-settings",
-		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Readme.md",
-		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Arduino Data Payload Example.md",
 		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Arduino Data Payload Example",
 		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/RC-Telemetry.ino",
 		"/C/Users/klhoa_000/OneDrive/Hobby Workspace/Programming Workspace/Arduino/RC_Telemetry/Telemetry.py",
