@@ -7,6 +7,8 @@ telemetry = xb.XbeeData()
 for i in range(1, 5):
 	
 	telemetry.update_data()
+	telemetry.update_data()
+	telemetry.update_data()
 
 	print "System Calibration: " + telemetry.calibration_system
 	print "Roll" + telemetry.roll

@@ -63,34 +63,51 @@ void setup()  {
 
 void loop()                     // run over and over again
 {
-	//Send the Gyro Calibration payload
+	String sensorDataPayload = "";
+
+	// Build the Gyro Calibration payload
 	uint8_t system, gyro, accel, mag = 0;
 	bno.getCalibration(&system, &gyro, &accel, &mag);
-	XBeeSerial.println("Cal S:"	+ String(system, DEC) 
-								+ " G:" + String(gyro, DEC) 
-								+ " A:" + String(accel, DEC) 
-								+ " M:" + String(mag, DEC));
+	sensorDataPayload   =	"Cal S:"	+ String(system, DEC) 
+							+ " G:"		+ String(gyro, DEC) 
+							+ " A:"		+ String(accel, DEC) 
+							+ " M:"		+ String(mag, DEC)
+							+"~";						// Using "~" as separator
 
-	//// Send Gyro Orientation payload
+	// Build Gyro Orientation payload
 
 	imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
 	
-	XBeeSerial.println("Mag_"		+ String(euler.x()));
-	XBeeSerial.println("Roll"		+ String(euler.y()));
-	XBeeSerial.println("Pit_"		+ String(euler.z()));
+	sensorDataPayload	+=	"Mag_"		+ String(euler.x())
+							+ "~"
+							+ "Roll"	+ String(euler.y())
+							+ "~"
+							+ "Pit_"	+ String(euler.z())
+							+ "~";
 
-	// Send the Altimeter payload
+	// Build the Altimeter payload
 
-	XBeeSerial.println("Pres"		+ String(altimeter.readPressure()));
-	XBeeSerial.println("Hum_"		+ String(altimeter.readHumidity()));
-	XBeeSerial.println("Temp"		+ String(altimeter.readTemperature()));
+	sensorDataPayload +=	"Pres"		+ String(altimeter.readPressure())
+							+ "~"
+							+ "Hum_"	+ String(altimeter.readHumidity())
+							+ "~"
+							+ "Temp"	+ String(altimeter.readTemperature())
+							+ "~";
 
-	// Send the GPS payload
-	XBeeSerial.println("Lat:"		+ String(gps.location.lat(), 8));
-	XBeeSerial.println("Long"		+ String(gps.location.lng(), 8));
-	XBeeSerial.println("GPSA"		+ String(gps.altitude.feet()));
+	// Build the GPS payload
 
-	XBeeSerial.println("Done");
+	sensorDataPayload +=	"Lat:"		+ String(gps.location.lat(), 8)
+							+ "~"
+							+ "Long"	+ String(gps.location.lng(), 8)
+							+ "~"
+							+ "GPSA"	+ String(gps.altitude.feet())
+							+ "~";
+
+	sensorDataPayload +=	"Done";
+
+	// Send the payload
+
+	XBeeSerial.println(sensorDataPayload);
 
 	smartDelay(50);		// Keeps GPS updating during delay
 

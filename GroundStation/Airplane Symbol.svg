@@ -31,15 +31,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="20.877396"
-     inkscape:cx="15.942944"
+     inkscape:cx="8.7820893"
      inkscape:cy="15.980171"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="1474"
+     inkscape:window-width="1446"
      inkscape:window-height="841"
-     inkscape:window-x="54"
+     inkscape:window-x="82"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -73,8 +73,10 @@
        inkscape:rounded="0"
        inkscape:randomized="0"
        d="M 31.166831,27.445535 0.81529446,27.465567 15.973714,1.1703491 Z"
-       inkscape:transform-center-x="-0.0057777683"
-       inkscape:transform-center-y="-5.0673073"
-       transform="matrix(0.99911738,0,0,1.1580143,0.06146283,-0.27139856)" />
+       inkscape:transform-center-x="-0.0036732131"
+       inkscape:transform-center-y="-5.0474507"
+       transform="matrix(0.63515377,0,0,1.1534767,5.7859507,-0.15966331)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

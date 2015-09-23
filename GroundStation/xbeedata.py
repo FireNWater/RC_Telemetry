@@ -20,16 +20,10 @@ class XbeeData:
 
 	def update_data(self):
 
-		self.complete_data_package = False
+		for data in self.USB_data_Package.readline().split("~"):   #Get data payload
 
-		while (not self.complete_data_package):
-
-			data = self.USB_data_Package.readline().strip()   	#Get data payload from Arduino
-
-			if data[0:4] == "Done":						#Check if package is finished
-				self.complete_data_package = True 		#Set flag to exit while() loop
-			elif data[0:4] == "Cal ":
-				self.calibration_system = data[4:]		#Slice off ID
+			if data[0:4] == "Cal ":
+				self.calibration_system = data[4:]		#Slice off ID (first 4 chars)
 			elif data[0:4] == "Mag_":
 				self.magnetic_heading = data[4:]
 			elif data[0:4] == "Roll":

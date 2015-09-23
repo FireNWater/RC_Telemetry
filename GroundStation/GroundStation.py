@@ -12,7 +12,7 @@ pygame.init()
 TFT_Display_Width, TFT_Display_Height = 320, 240
 
 screenCenter = (TFT_Display_Width / 2, TFT_Display_Height / 2)
-compassCenter = (250,45)
+compassCenter = (260,45)
 
 DISPLAYSURF = pygame.display.set_mode((TFT_Display_Width, TFT_Display_Height))
 
@@ -62,6 +62,7 @@ while True: # main game loop
 	wingRectObject = wingSymbol[int(float(telemetry.roll)) + 90].get_rect()
 	wingRectObject.center = screenCenter
 	DISPLAYSURF.blit(wingSymbol[int(float(telemetry.roll)) + 90], wingRectObject)
+	pygame.draw.line(DISPLAYSURF, text_color, (0, screenCenter[1]), (TFT_Display_Width, screenCenter[1]), 2)
 
 	compassRectObj = compassSymbol[int(float(telemetry.magnetic_heading))].get_rect()
 	compassRectObj.center = compassCenter
@@ -72,4 +73,3 @@ while True: # main game loop
 
 	pygame.display.update()
 	telemetry.update_data()
-	
